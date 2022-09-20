@@ -1,1 +1,8 @@
 servlests\Servlet1.class
+beans\Usuario.class
+controller\UsuarioController.class
+beans\Biblioteca.class
+beans\Libro.class
+controller\IUsuarioController.class
+connection\Conexion.class
+test\Prueba.class

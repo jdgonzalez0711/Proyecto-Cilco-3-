@@ -20,6 +20,14 @@ public class Usuario {
         this.email = email;
     }
 
+    public Usuario(String username, String password, String nombres, String apellidos, String email) {
+        this.username = username;
+        this.password = password;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.email = email;
+    }
+
     public Integer getId() {
         return id;
     }
