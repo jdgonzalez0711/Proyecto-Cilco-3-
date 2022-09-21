@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS `biblioteca` (
   PRIMARY KEY (`id`),
   KEY `biblioteca_FK` (`id_usuario`),
   KEY `biblioteca_FK_1` (`id_libro`),
-  CONSTRAINT `biblioteca_FK` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
-  CONSTRAINT `biblioteca_FK_1` FOREIGN KEY (`id_libro`) REFERENCES `libros` (`id_libro`)
+  CONSTRAINT `biblioteca_FK` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `biblioteca_FK_1` FOREIGN KEY (`id_libro`) REFERENCES `libros` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla mi_libreria.biblioteca: ~0 rows (aproximadamente)
@@ -41,20 +41,20 @@ CREATE TABLE IF NOT EXISTS `biblioteca` (
 
 -- Volcando estructura para tabla mi_libreria.libros
 CREATE TABLE IF NOT EXISTS `libros` (
-  `id_libro` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `titulo` varchar(100) DEFAULT NULL,
   `categoria` varchar(100) DEFAULT NULL,
   `sub_categoria` varchar(100) DEFAULT NULL,
   `autor` varchar(100) DEFAULT NULL,
   `anio_publicacion` int(11) DEFAULT NULL,
   `paginas` int(11) DEFAULT NULL,
-  PRIMARY KEY (`id_libro`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `libros_un` (`titulo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla mi_libreria.libros: ~99 rows (aproximadamente)
 /*!40000 ALTER TABLE `libros` DISABLE KEYS */;
-INSERT INTO `libros` (`id_libro`, `titulo`, `categoria`, `sub_categoria`, `autor`, `anio_publicacion`, `paginas`) VALUES
+INSERT INTO `libros` (`id`, `titulo`, `categoria`, `sub_categoria`, `autor`, `anio_publicacion`, `paginas`) VALUES
 	(1, 'La cronica', 'Biografia', 'Obra de referencia', 'Martin Caparros', 2015, 321),
 	(2, 'Cien a�os de soledad', 'Novela', 'Ficcion ', 'Gabriel Garcia Marquez', 1967, 471),
 	(3, 'Orgullo y prejuicio', 'Novela', 'Romance', 'Jane Austen', 1813, 384),
@@ -158,19 +158,19 @@ INSERT INTO `libros` (`id_libro`, `titulo`, `categoria`, `sub_categoria`, `autor
 
 -- Volcando estructura para tabla mi_libreria.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
-  `id_usuario` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `nombres` varchar(100) NOT NULL,
   `apellidos` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  PRIMARY KEY (`id_usuario`),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `usuarios_un` (`username`,`email`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla mi_libreria.usuarios: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuarios` DISABLE KEYS */;
-INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `nombres`, `apellidos`, `email`) VALUES
+INSERT INTO `usuarios` (`id`, `username`, `password`, `nombres`, `apellidos`, `email`) VALUES
 	(1, 'jdgonzalez', '123456', 'David', 'Gonzalez', 'jdgonzalez0711@hotmail.com'),
 	(2, 'pepe', 'abcd', 'pepe', 'grillo', 'pepe@hotamial.com'),
 	(3, 'maria123', 'lector1', 'Maria', 'Ortiz', 'Maria.Ortiz@gmail.com'),
