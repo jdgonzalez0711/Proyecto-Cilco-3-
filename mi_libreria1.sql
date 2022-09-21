@@ -31,8 +31,8 @@ CREATE TABLE IF NOT EXISTS `biblioteca` (
   PRIMARY KEY (`id`),
   KEY `biblioteca_FK` (`id_usuario`),
   KEY `biblioteca_FK_1` (`id_libro`),
-  CONSTRAINT `biblioteca_FK` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
-  CONSTRAINT `biblioteca_FK_1` FOREIGN KEY (`id_libro`) REFERENCES `libros` (`id`)
+  CONSTRAINT `biblioteca_FK` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
+  CONSTRAINT `biblioteca_FK_1` FOREIGN KEY (`id_libro`) REFERENCES `libros` (`id_libro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- Volcando datos para la tabla mi_libreria.biblioteca: ~0 rows (aproximadamente)
