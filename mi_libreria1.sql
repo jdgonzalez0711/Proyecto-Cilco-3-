@@ -17,24 +17,6 @@
 CREATE DATABASE IF NOT EXISTS `mi_libreria` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `mi_libreria`;
 
--- Volcando estructura para tabla mi_libreria.biblioteca
-CREATE TABLE IF NOT EXISTS `biblioteca` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fecha_seleccion` date DEFAULT NULL,
-  `fecha_inicio_lectura` date DEFAULT NULL,
-  `fecha_fin_lectura` date DEFAULT NULL,
-  `comentario` text DEFAULT NULL,
-  `meta_lectura` varchar(100) DEFAULT NULL,
-  `calificacion` tinyint(4) DEFAULT NULL,
-  `id_libro` int(11) NOT NULL,
-  `id_usuario` int(11) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `biblioteca_FK` (`id_usuario`),
-  KEY `biblioteca_FK_1` (`id_libro`),
-  CONSTRAINT `biblioteca_FK` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
-  CONSTRAINT `biblioteca_FK_1` FOREIGN KEY (`id_libro`) REFERENCES `libros` (`id_libro`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 -- Volcando datos para la tabla mi_libreria.biblioteca: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `biblioteca` DISABLE KEYS */;
 /*!40000 ALTER TABLE `biblioteca` ENABLE KEYS */;
@@ -179,6 +161,24 @@ INSERT INTO `usuarios` (`id_usuario`, `username`, `password`, `nombres`, `apelli
 	(7, 'monica123', 'abcde', 'Monica', 'Pinzon', 'monica.pinzon@gmail.com'),
 	(8, 'Laura123', '0987', 'Laura Vanessa', 'Diaz Velasquez', 'Laura.diaz@gmail.com');
 /*!40000 ALTER TABLE `usuarios` ENABLE KEYS */;
+
+-- Volcando estructura para tabla mi_libreria.biblioteca
+CREATE TABLE IF NOT EXISTS `biblioteca` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fecha_seleccion` date DEFAULT NULL,
+  `fecha_inicio_lectura` date DEFAULT NULL,
+  `fecha_fin_lectura` date DEFAULT NULL,
+  `comentario` text DEFAULT NULL,
+  `meta_lectura` varchar(100) DEFAULT NULL,
+  `calificacion` tinyint(4) DEFAULT NULL,
+  `id_libro` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `biblioteca_FK` (`id_usuario`),
+  KEY `biblioteca_FK_1` (`id_libro`),
+  CONSTRAINT `biblioteca_FK` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`),
+  CONSTRAINT `biblioteca_FK_1` FOREIGN KEY (`id_libro`) REFERENCES `libros` (`id_libro`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
