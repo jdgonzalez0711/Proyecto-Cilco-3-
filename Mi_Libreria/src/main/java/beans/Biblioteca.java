@@ -27,6 +27,10 @@ public class Biblioteca {
         this.id_usuario = id_usuario;
     }
 
+    public Biblioteca(Integer id, String titulo, String categoria, java.sql.Date fecha_seleccion) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public Integer getId() {
         return id;
     }
