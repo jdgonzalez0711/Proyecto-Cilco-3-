@@ -12,12 +12,10 @@ public interface IUsuarioController {
     
     public String pedir(String username);
     
-    public String modificar(String username , String nuevoPassword , String nuevosNombres , String nuevosApellidos,
-            String nuevoEmail);
+    public String modificar(String username, String nuevaContrasena, 
+            String nuevoNombre, String nuevosApellidos, String nuevoEmail);
     
-    public String verlibros (String username);
-    
-    public String devolver (String username, Map<Integer , Integer> libros);
+
     
     public String eliminar(String username);
 }

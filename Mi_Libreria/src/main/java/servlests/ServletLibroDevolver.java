@@ -1,6 +1,7 @@
 
 package servlests;
 
+import controller.LibroController;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -9,51 +10,56 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import controller.UsuarioController;
-
 /**
- * Servlet implementacion class ServletUsuarioEliminar
+ * Servlet implementation class ServletLibroDevolver
  */
-@WebServlet("/ServletUsuarioEliminar")
-public class ServletUsuarioEliminar extends HttpServlet {
+@WebServlet("/ServletLibroDevolver")
+public class ServletLibroDevolver extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
     /**
-     * @see HttpServlet#HttpServlet() 
+     * @see  HttpServlet#HttpServlet() 
      */
-    public ServletUsuarioEliminar() {
+
+    public ServletLibroDevolver(){
         super();
         //TODO Auto-generated constructor stub
-    }
-
+}
+    
+    
     /**
-     * @see  HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response) 
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response) 
      */
+ 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //TODO Auto-generated method stub
         
-        UsuarioController usuario = new UsuarioController();
+        LibroController libro = new LibroController();
         
         String username = request.getParameter("username");
+        Integer id = Integer.parseInt(request.getParameter("id"));
         
-        String usuarioStr = usuario.eliminar(username);
+        String libroStr = libro.devolver(id,username);
+        
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
-        out.println(usuarioStr);
+        out.println(libroStr);
         out.flush();
         out.close();
+        
+        
     }
 
-     /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response) 
+    /**
+     * @see  HtttpServlet#doPost (HttpServletRequest request , HttpServletResponse response)
      */
-    
-    
+   
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
     }
+    
+}
 
   
-}

@@ -14,7 +14,7 @@ $(document).ready(function () {
         
         getLibros(false, "ASC");
         
-        $("#ordenar-categoria").click(ordenarLibro);
+        
     });
 });
 

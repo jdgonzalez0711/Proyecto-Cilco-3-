@@ -6,25 +6,25 @@ $(document).ready(function () {
     
     fillUsuario().then(function() {
         
-        $("#user-saldo").html("$" + user.saldo.toFixed());
         
-        getSeleccionados(user.username);    
-});
+        getSeleccionadas(user.username);
+           
+    });
 
-$("#reservar-btn").attr("href", home.html?username=$(username) );
+    $("#reservar-btn").attr("href", 'home.html?username=${username}' );
 
-$("#form-modificar").on("submit", function (event) {
+    $("#form-modificar").on("submit", function (event) {
    
         event.preventDefault();
         modificarUsuario;
-});
+    });
 
-$("#aceptar-eliminar-cuenta-btn").click(function () {
+    $("#aceptar-eliminar-cuenta-btn").click(function () {
     
-    eliminarCuenta().then(function () {
-        location.href = "login.html";
-    })
-})
+        eliminarCuenta().then(function () {
+            location.href = "login.html";
+    });
+});
 
 });
 
@@ -34,7 +34,7 @@ async function fillUsuario() {
         dataType: "html",
         url: "./ServletUsuarioPedir",
         data: $.param({
-            username: username,
+            username: username
         }),
         success: function (result){
             let parsedResult = JSON.parse(result);
@@ -54,23 +54,23 @@ async function fillUsuario() {
     });
 }
 
-function getSeleccionados(username) {
-    
-    
+function getSeleccionadas(username) {
+
+
     $.ajax({
-        type:"GET",
+        type: "GET",
         dataType: "html",
         url: "./ServletSeleccionarListar",
         data: $.param({
             username: username,
         }),
-        success: function(result) {
+        success: function (result) {
             let parsedResult = JSON.parse(result);
-            
-            if(parsedResult != false) {
-                
+
+            if (parsedResult != false) {
+
                 mostrarHistorial(parsedResult)
-                
+
             } else {
                 console.log("Error recuperando los datos de las reservas");
             }
@@ -87,8 +87,10 @@ function mostrarHistorial(libros){
             contenido += '<tr><th scope="row">' + libro.id + '</th>' +
                     '<td>' + libro.titulo + '</td>' +
                     '<td>' + libro.categoria + '</td>' +
-                    
-        })
+                    '<td><button id="devolver-btn" onclick="devolverLibro(' + libro.id
+                    + ');" class="btn btn-danger">Delvolver</button></td></tr>';
+        });
+
         $("#historial-tbody").html(contenido);
         $("#historial-table").removeClass("d-none");
         $("#historial-vacio").addClass("d-none");
@@ -100,58 +102,61 @@ function mostrarHistorial(libros){
     
 }
 
+
 function modificarUsuario() {
-    
+
     let username = $("#input-username").val();
     let password = $("#input-contrasena").val();
     let nombres = $("#input-nombre").val();
-    let apellidos = $("#input-apellidos").vall();
+    let apellidos = $("#input-apellidos").val();
     let email = $("#input-email").val();
     $.ajax({
-        type:"GET",
-        dataType:"html",
-        url:"./ServletUsuarioModificar",
+        type: "GET",
+        dataType: "html",
+        url: "./ServletUsuarioModificar",
         data: $.param({
             username: username,
             password: password,
             nombres: nombres,
-            apellidos:apellidos,
+            apellidos: apellidos,
             email: email,
         }),
         success: function (result) {
-            
-            if( result != false) {
+
+            if (result != false) {
                 $("#modificar-error").addClass("d-none");
                 $("#modificar-exito").removeClass("d-none");
             } else {
                 $("#modificar-error").removeClass("d-none");
                 $("#modificar-exito").addClass("d-none");
             }
-            
+
             setTimeout(function () {
                 location.reload();
-            },3000);
+            }, 3000);
+
         }
     });
+
 }
 
-async function eliminarCuenta () {
-    
+async function eliminarCuenta() {
+
     await $.ajax({
-        type:"GET",
+        type: "GET",
         dataType: "html",
         url: "./ServletUsuarioEliminar",
         data: $.param({
             username: username
         }),
         success: function (result) {
-            
-            if(result != false) {
-                
-                console.log("Usuario eliminado");
-                
+
+            if (result != false) {
+
+                console.log("Usuario eliminado")
+
             } else {
-                console.log("Error eliminando el Usuario");
+                console.log("Error eliminando el usuario");
             }
         }
     });

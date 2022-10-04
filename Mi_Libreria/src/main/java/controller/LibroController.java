@@ -56,6 +56,47 @@ public class LibroController implements ILibroController{
         return gson.toJson(libros);
     }
     
+    @Override
+    public String devolver(Integer id , String username) {
+        
+        Conexion con = new Conexion();
+        String sql = "DELETE from biblioteca where id = " + id + "and username = ' " 
+                + username + "'limit 1";
+        
+        try {
+            Statement st = con.getConnection().createStatement();
+            st.executeQuery(sql);
+            
+            this.sumarCantidad(id);
+            
+            return "true";
+        } catch(Exception ex) {
+            System.out.println(ex.toString());
+        } finally{
+            con.Desconectar();
+        }
+        return "false";
+    }
   
-    
+    @Override
+    public String sumarCantidad(int id) {
+        
+        Conexion con = new Conexion();
+        
+        String sql = "UPDATE libros set copias = (Select from peliculas where id= "
+                + id + ") + 1 where id= "+ id;
+        
+        try {
+            Statement st = con.getConnection().createStatement();
+            st.executeUpdate(sql);
+            
+            return "true";
+        } catch (Exception ex){
+            System.out.println(ex.toString());
+            
+        } finally {
+            con.Desconectar();
+        }
+        return "false";
+    }
 }

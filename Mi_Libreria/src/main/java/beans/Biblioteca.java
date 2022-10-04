@@ -13,9 +13,9 @@ public class Biblioteca {
     String meta_lectura;
     Integer calificacion;
     Integer id_libro;
-    Integer id_usuario;
+    String username;
 
-    public Biblioteca(Integer id, Date fecha_seleccion, Date fecha_inicio_lectura, Date fecha_fin_lectura, String comentario, String meta_lectura, Integer calificacion, Integer id_libro, Integer id_usuario) {
+    public Biblioteca(Integer id, Date fecha_seleccion, Date fecha_inicio_lectura, Date fecha_fin_lectura, String comentario, String meta_lectura, Integer calificacion, Integer id_libro, String username) {
         this.id = id;
         this.fecha_seleccion = fecha_seleccion;
         this.fecha_inicio_lectura = fecha_inicio_lectura;
@@ -24,10 +24,10 @@ public class Biblioteca {
         this.meta_lectura = meta_lectura;
         this.calificacion = calificacion;
         this.id_libro = id_libro;
-        this.id_usuario = id_usuario;
+        this.username = username;
     }
 
-    public Biblioteca(Integer id, String titulo, String categoria, java.sql.Date fecha_seleccion) {
+    public Biblioteca(int id, String titulo, java.sql.Date fechaAlquiler, String categoria) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
@@ -95,20 +95,17 @@ public class Biblioteca {
         this.id_libro = id_libro;
     }
 
-    public Integer getId_usuario() {
-        return id_usuario;
+    public String getUsername() {
+        return username;
     }
 
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override
     public String toString() {
-        return "Biblioteca{" + "id=" + id + ", fecha_seleccion=" + fecha_seleccion + ", fecha_inicio_lectura=" + fecha_inicio_lectura + ", fecha_fin_lectura=" + fecha_fin_lectura + ", comentario=" + comentario + ", meta_lectura=" + meta_lectura + ", calificacion=" + calificacion + ", id_libro=" + id_libro + ", id_usuario=" + id_usuario + '}';
+        return "Biblioteca{" + "id=" + id + ", fecha_seleccion=" + fecha_seleccion + ", fecha_inicio_lectura=" + fecha_inicio_lectura + ", fecha_fin_lectura=" + fecha_fin_lectura + ", comentario=" + comentario + ", meta_lectura=" + meta_lectura + ", calificacion=" + calificacion + ", id_libro=" + id_libro + ", username=" + username + '}';
     }
-
-    
-    
-    
+  
 }
